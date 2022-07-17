@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
         shadowColor: const Color(0xFF001456),
         splashColor: const Color(0xFF4169e8),
       ),
-      home: HomePage(),
+      home:const HomePage(),
     );
   }
 }

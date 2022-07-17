@@ -7,7 +7,7 @@ class MyProvider with ChangeNotifier {
   String activePlayer = 'X';
   bool gameOver = false;
   int turn = 0;
-  String result = 'your are Lost';
+  String result = '';
   Game game = Game();
 
   changeSwitch(val) {
@@ -19,7 +19,7 @@ class MyProvider with ChangeNotifier {
     activePlayer = 'X';
     gameOver = false;
     turn = 0;
-    result = ' ';
+    result = '';
     Player.playerX = [];
     Player.playerO = [];
     notifyListeners();
@@ -30,7 +30,7 @@ class MyProvider with ChangeNotifier {
         (Player.playerO.isEmpty || !Player.playerO.contains(index))) {
       game.playGame(index, activePlayer);
       activePlayer1();
-      if(!isSwitched&&!gameOver){
+      if(!isSwitched&&!gameOver&&turn!=9){
       await game.autoPlay(activePlayer);
       activePlayer1();
       }

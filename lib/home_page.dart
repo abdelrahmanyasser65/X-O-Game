@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:xo_game/game_logic.dart';
 import 'package:xo_game/provider.dart';
 class HomePage extends StatelessWidget {
-   HomePage({Key? key}) : super(key: key);
+   const HomePage({Key? key}) : super(key: key);
 
 
   @override
@@ -17,23 +17,31 @@ class HomePage extends StatelessWidget {
           body:SafeArea(
             child: Column(
               children: [
-                SwitchListTile.adaptive(
-                  title:const
-                  Text("Turn on/off two player",style:
-                  TextStyle(color: Colors.white,
-                  fontSize: 28),textAlign: TextAlign.center,),
-                  value: provider.isSwitched,
-                  onChanged: (val)=>provider.changeSwitch(val),
+               Padding(
+                 padding:const EdgeInsets.only(
+                   top: 40,left: 10,right: 10,bottom: 15
+                 ),
+                 child:
+                 SwitchListTile.adaptive(
+
+                   title:const
+                   Text("Turn on/off two player",style:
+                   TextStyle(color: Colors.white,
+                       fontSize: 24,fontWeight: FontWeight.bold,fontStyle: FontStyle.italic),),
+                   value: provider.isSwitched,
+                   onChanged: (val)=>provider.changeSwitch(val),
 
 
-                ),
-                SizedBox(height: 10,),
-                Text("It's ${provider.activePlayer} turn",style:
-                TextStyle(color: Colors.white,
-                    fontSize:55),textAlign: TextAlign.center,),
+                 ),
+               ),
+              const  SizedBox(height: 20,),
+              provider.result.isEmpty?  Text("It's ${provider.activePlayer} turn",style:
+               const TextStyle(color: Colors.white,
+                    fontSize:55,fontWeight:FontWeight.bold,fontStyle: FontStyle.italic)):const Text(""),
+               const SizedBox(height: 30,),
                 Expanded(
                   child: GridView.count(
-                    padding: EdgeInsets.all(16),
+                    padding:const EdgeInsets.all(16),
                       crossAxisCount: 3,
                    mainAxisSpacing: 10,
                     crossAxisSpacing:10 ,
@@ -63,17 +71,20 @@ class HomePage extends StatelessWidget {
                   ),
                 ),
                 Text(provider.result,style:
-                TextStyle(color: Colors.white,
+              const  TextStyle(color: Colors.white,
                     fontSize: 35),textAlign: TextAlign.center,),
+              const  SizedBox(height: 40,),
                 ElevatedButton.icon(
-                  style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all(
-                      Theme.of(context).splashColor,
-                    ),
+                  style: ElevatedButton.styleFrom(
+                  primary:  Theme.of(context).splashColor,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15)
+                    )
                   ),
-                  icon: Icon(Icons.replay),
+                  icon:const Icon(Icons.replay),
                     onPressed: ()=>provider.repeatTheGame(),
-                    label: Text('Repeat the game')),
+                    label:const Text('Repeat the game',style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold),)),
+              const  SizedBox(height: 45,),
 
               ],
             ),
